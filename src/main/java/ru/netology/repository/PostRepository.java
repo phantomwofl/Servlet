@@ -1,16 +1,9 @@
 package ru.netology.repository;
 
-import ru.netology.exception.NotFoundException;
 import ru.netology.model.Post;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.html.Option;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
-import java.util.concurrent.ConcurrentSkipListSet;
+
 
 // Stub
 public class PostRepository {
@@ -30,15 +23,13 @@ public class PostRepository {
     }
   }
 
-  public Post save(Post post) {
-    if (post.getId() == 0) {
-      counter++;
-      collection.put(counter, post);
-    } else if (collection.containsKey(post.getId())) {
-      collection.put(post.getId(), post);
-    } else {
-     // HttpServletResponse.SC_NOT_FOUND;
-    }
+  public synchronized Post save(Post post) {
+      if (post.getId() == 0) {
+        counter++;
+        collection.put(counter, post);
+      } else if (collection.containsKey(post.getId())) {
+        collection.put(post.getId(), post);
+      }
     return collection.get(post.getId());
   }
 
