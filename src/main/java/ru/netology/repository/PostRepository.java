@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PostRepository {
 
   private long counter = 0;
-  private ConcurrentHashMap <Long, Post> collection;
+  private ConcurrentHashMap <Long, Post> collection = new ConcurrentHashMap<>();
 
   public ConcurrentHashMap <Long, Post> all() {
     return this.collection;
