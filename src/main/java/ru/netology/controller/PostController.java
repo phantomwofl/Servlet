@@ -42,6 +42,6 @@ public class PostController {
   public void removeById(long id, HttpServletResponse response) {
     // TODO: deserialize request & serialize response
     service.removeById(id);
-    response.
+    response.setStatus(HttpServletResponse.SC_OK);
   }
 }
