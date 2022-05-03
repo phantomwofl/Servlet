@@ -30,9 +30,9 @@ public class MainServlet extends HttpServlet {
                 controller.all(resp);
                 return;
             }
-            if (method.equals("GET") && path.matches("/api/posts/\\d+")) {
+            if (method.equals("GET") && path.matches("/api/posts/\\d")) {
                 // easy way
-                final var id = Long.parseLong(path.substring(path.lastIndexOf("/")));
+                final var id = Long.parseLong(path.substring(path.lastIndexOf("/")+1));
                 controller.getById(id, resp);
                 return;
             }
@@ -40,9 +40,9 @@ public class MainServlet extends HttpServlet {
                 controller.save(req.getReader(), resp);
                 return;
             }
-            if (method.equals("DELETE") && path.matches("/api/posts/\\d+")) {
+            if (method.equals("DELETE") && path.matches("/api/posts/\\d")) {
                 // easy way
-                final var id = Long.parseLong(path.substring(path.lastIndexOf("/")));
+                final var id = Long.parseLong(path.substring(path.lastIndexOf("/")+1));
                 controller.removeById(id, resp);
                 return;
             }
